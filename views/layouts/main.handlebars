@@ -29,7 +29,7 @@
             <button id="logout" class="btn btn-outline-danger" type="submit">Logout</button>
             {{else}}
             <!-- If the user is not logged in prompt login with a green redirect to /login -->
-            <button class="btn btn-outline-success" type="submit" href="/login">Login</button>
+            <button class="btn btn-outline-success" type="submit" onclick="window.location.pathname='/login">Login</button>
             {{/if}}
             
           </form>
