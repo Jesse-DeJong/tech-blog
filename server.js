@@ -4,6 +4,7 @@ const routes = require('./routes');
 const helpers = require('./utils/helpers');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // import sequelize connection
 const sequelize = require('./config/connection');
@@ -14,6 +15,9 @@ const PORT = process.env.PORT || 8080;
 // Setup sessions
 const sess = {
   secret: 'keyboard cat',
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
   resave: false,
   saveUninitialized: true,
   // cookie: { secure: true }

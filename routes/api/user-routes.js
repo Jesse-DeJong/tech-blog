@@ -41,10 +41,19 @@ router.post('/', async (req, res) => {
 
     // Establish the user as logged in
     req.session.save(() => {
-      req.session.logginIn = true;
+      req.session.loggedIn = true});
 
-      res.status(200).json(newUser);
+    // Render template with Sequelize data
+    const articleData = await Article.findAll({
+      order: [['date_created', 'ASC']]
     });
+    // Serialize the data
+    const articles = articleData.map(articleData => articleData.get({ plain: true }));
+    // Render the homepage passing in the serialized data
+    res.render('homepage', {
+      articles
+    });
+
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -82,18 +91,12 @@ router.post('/login', async (req, res) => {
 
     // As an email/password combo has returned successfully flag the user as logged in
     req.session.save(() => {
-      req.session.loggedIn = true});
+      req.session.loggedIn = true,
+      console.log('test');
+      res.render('homepage');
+    });
 
-    // Render template with Sequelize data
-    const articleData = await Article.findAll({
-      order: [['date_created', 'ASC']]
-    });
-    // Serialize the data
-    const articles = articleData.map(articleData => articleData.get({ plain: true }));
-    // Render the homepage passing in the serialized data
-    res.render('homepage', {
-      articles
-    });
+    
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

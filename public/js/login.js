@@ -8,7 +8,7 @@ const loginFormHandler = async (event) => {
   // Test user has provided an email and a password
   if (email && password) {
     // Call the login route with the userdata
-     await fetch('/api/users/login', {
+     const loginFetch = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
