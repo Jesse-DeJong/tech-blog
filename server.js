@@ -2,12 +2,24 @@ const path = require('path');
 const express = require('express');
 const routes = require('./routes');
 const helpers = require('./utils/helpers');
+const session = require('express-session');
 const exphbs = require('express-handlebars');
+
 // import sequelize connection
 const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Setup sessions
+const sess = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+};
+
+app.use(session(sess));
 
 // Setup handlebars
 const hbs = exphbs.create({ helpers });

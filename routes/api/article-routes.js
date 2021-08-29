@@ -5,16 +5,19 @@ const { User, Article } = require('../../models');
 /* The '/api/articles' endpoint */
 
 // get all articles
-router.get('/', async (req, res) => {
-    try {
-      const data = await Article.findAll({
-        include: [{ model: User }]
-      });
-      res.status(200).json(data);
-    } catch (err) {
-      res.status(404).json(err);
-    }
-  });
+// router.get('/', async (req, res) => {
+//     try {
+//       const data = await Article.findAll({
+//         // include: [{ model: User }]
+//       });
+//       res.status(200).render('layouts/main', {
+//         data,
+//         loggedIn: req.session.loggedIn
+//       });
+//     } catch (err) {
+//       res.status(404).json(err);
+//     }
+//   });
   
   // get one article
   router.get('/:id', async (req, res) => {
@@ -23,7 +26,7 @@ router.get('/', async (req, res) => {
         where: {
           id: req.params.id
         },
-        include: [{ model: User }]
+        // include: [{ model: User }]
       });
       res.status(200).json(data);
     } catch (err) {

@@ -30,4 +30,68 @@ router.get('/', async (req, res) => {
     }
   });
 
+// CREATE new user
+router.post('/', async (req, res) => {
+  try {
+    const newUser = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    // Establish the user as logged in
+    req.session.save(() => {
+      req.session.logginIn = true;
+
+      res.status(200).json(newUser);
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
+// Login
+router.post('/login', async (req, res) => {
+  try {
+    // Check the DB for the user entered email address
+    const userData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    // If no match is found end the request and send an error message
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password. Please try again!' });
+      return;
+    }
+
+    // Confirm the entered password matches in the DB
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    // If it doesn't match end the request and send an error message
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password. Please try again!' });
+      return;
+    }
+
+    // As an email/password combo has returned successfully flag the user as logged in
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res
+        .status(200)
+        .json({ user: userData, message: 'You are now logged in!' });
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

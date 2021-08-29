@@ -13,7 +13,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">The Tech Blog</a>
+        <a class="navbar-brand" href="/">The Tech Blog</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -22,19 +22,33 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Dashboard</a>
             </li>
-
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-danger" type="submit">Logout</button>
+            <!-- If the user is logged in change the button to a red logout button -->
+            {{#if loggedIn}}
+            <button id="logout" class="btn btn-outline-danger" type="submit">Logout</button>
+            {{else}}
+            <!-- If the user is not logged in prompt login with a green redirect to /login -->
+            <button class="btn btn-outline-success" type="submit" href="/login">Login</button>
+            {{/if}}
+            
           </form>
         </div>
       </div>
     </nav>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Dynamic Body -->
+  <main>
+    <div>
+      {{{ body }}}
+    </div>
+  </main>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
+    <script src="/js/login.js"></script>
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 </html>
