@@ -5,10 +5,6 @@ const { User, Article } = require('../models');
 
 router.use('/api', apiRoutes);
 
-// router.get('/', (req, res) => {
-//   res.render('layouts/main')
-// });
-
 //Login route
 router.get('/login', (req, res) => {
   // IF the user is already logged in, redirect to the homepage
@@ -22,15 +18,14 @@ router.get('/login', (req, res) => {
 
 // Homepage articles
 router.get('/', async (req, res) => {
-  // TODO: Render template with Sequelize data
+  // Render template with Sequelize data
   const articleData = await Article.findAll({
     order: [['date_created', 'ASC']]
   });
-  
-  
+  // Serialize the data
   const articles = articleData.map(articleData => articleData.get({ plain: true }));
   console.log(articles);
-
+  // Render the homepage passing in the serialized data
   res.render('homepage', {
     articles
   });
