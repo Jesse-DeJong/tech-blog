@@ -71,7 +71,7 @@ router.post('/login', async (req, res) => {
 
     // Confirm the entered password matches in the DB
     const validPassword = await userData.checkPassword(req.body.password);
-
+    
     // If it doesn't match end the request and send an error message
     if (!validPassword) {
       res
@@ -86,7 +86,8 @@ router.post('/login', async (req, res) => {
 
       res
         .status(200)
-        .json({ user: userData, message: 'You are now logged in!' });
+        .json({ user: userData, message: 'You are now logged in!' })
+        .render('homepage');
     });
   } catch (error) {
     console.log(error);

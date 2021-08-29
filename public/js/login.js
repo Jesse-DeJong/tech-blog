@@ -13,12 +13,6 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-    // If successful redirect to the homepage
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Incorrect username or password.');
-    }
   }
 };
 
@@ -50,8 +44,8 @@ const signupFormHandler = async (event) => {
 // DOM targeting and listener for form submission
 document
   .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  .addEventListener('click', loginFormHandler);
 
 document
   .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+  .addEventListener('click', signupFormHandler);
