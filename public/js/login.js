@@ -13,6 +13,9 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
+    if (loginFetch.status === 200) {
+      window.location.replace('/');
+    }
   }
 };
 

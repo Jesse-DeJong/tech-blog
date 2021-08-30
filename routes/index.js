@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
   const articles = articleData.map(articleData => articleData.get({ plain: true }));
   // Render the homepage passing in the serialized data
   res.render('homepage', {
-    articles
+    articles,
+    loggedIn: req.session.loggedIn 
   });
 });
 

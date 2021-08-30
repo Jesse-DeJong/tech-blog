@@ -93,7 +93,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true,
       console.log('test');
-      res.render('homepage');
+      res.json(userData);
     });
 
     
