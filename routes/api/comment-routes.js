@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Article, Comment } = require('../../models');
+const { User, Article, Comment, ArticleComment } = require('../../models');
 
 /* /api/comments endpoint */
 
@@ -7,7 +7,7 @@ const { User, Article, Comment } = require('../../models');
 router.get('/', async (req, res) => {
     try {
       const data = await Comment.findAll({
-        include: [{ model: Article }]
+        include: [{ model: Article, through: ArticleComment }]
       });
       res.status(200).json(data);
     } catch (err) {

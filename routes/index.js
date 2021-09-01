@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const apiRoutes = require('./api');
 
-const { User, Article, Comment } = require('../models');
+const { User, Article, Comment, ArticleComment } = require('../models');
 
 router.use('/api', apiRoutes);
 
@@ -23,24 +23,16 @@ router.get('/', async (req, res) => {
 
   // Render template with Sequelize data
   const articleData = await Article.findAll({
+    include: { model: Comment, through: ArticleComment },
     order: [['date_created', 'ASC']]
   });
   // Serialize the data
   const articles = articleData.map(articleData => articleData.get({ plain: true }));
   console.log(articles);
-// Pull and Serialize Comment data...
 
-  // Render template with Sequelize data
-  const commentData = await Comment.findAll({
-    order: [['date_created', 'ASC']]
-  });
-  // Serialize the data
-  const comments = commentData.map(commentData => commentData.get({ plain: true }));
-  console.log(comments);
   // Render the homepage passing in the serialized data
   res.render('homepage', {
     articles,
-    comments,
     loggedIn: req.session.loggedIn 
   });
 });
