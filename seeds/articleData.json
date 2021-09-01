@@ -1,27 +1,27 @@
 [
   {
-    "article_name": "Article 1",
+    "article_name": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "author": "Sal",
-    "contents": "sdfalkjgnbaslkdfgbnasf;dkgbna;sfdkgb;kafsdbngka;ldfsjbgn"
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
-    "article_name": "Article 2",
+    "article_name": "Nulla porta justo sed velit congue rhoncus",
     "author": "Lernantino",
-    "contents": "sgs.kdsalkaslk;asdsajklbgn"
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
-    "article_name": "Article 3",
+    "article_name": "Mauris porttitor pretium diam vitae bibendum",
     "author": "Amiko",
-    "contents": "234154651651654657431347352.4"
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
-    "article_name": "Article 4",
+    "article_name": "Sed auctor leo at lacus pharetra lacinia",
     "author": "Jordan",
-    "contents": "sgafsd;lkasdfglk;nasdg;lknlkjn;kljnjknln"
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
-    "article_name": "Article 5",
+    "article_name": "Maecenas sit amet euismod justo",
     "author": "Blake",
-    "contents": "dfagdfgaadgfgdfaadgfgfadadgfl;kklm;adfglk;madfgklm"
+    "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   }
 ]

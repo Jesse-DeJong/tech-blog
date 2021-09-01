@@ -69,7 +69,6 @@ router.post('/login', async (req, res) => {
         email: req.body.email,
       },
     });
-
     // If no match is found end the request and send an error message
     if (!userData) {
       res
@@ -77,7 +76,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
     // Confirm the entered password matches in the DB
     const validPassword = await userData.checkPassword(req.body.password);
     
@@ -88,15 +86,12 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
     // As an email/password combo has returned successfully flag the user as logged in
     req.session.save(() => {
       req.session.loggedIn = true,
       console.log('test');
       res.json(userData);
     });
-
-    
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
