@@ -26,6 +26,14 @@ Article.init(
                 key: 'username'
             }
         },
+        user_comments: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'comment',
+                key: 'id'
+            }
+        },
         date_created: {
             type: DataTypes.DATE,
             allowNull: false,

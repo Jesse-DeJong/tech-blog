@@ -11,14 +11,6 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
-        article_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'article',
-                key: 'id'
-            }
-        },
         contents: {
             type: DataTypes.STRING,
             allowNull: false

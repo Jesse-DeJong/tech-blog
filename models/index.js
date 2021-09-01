@@ -8,10 +8,14 @@ Article.belongsTo(User, {
   foreignKey: 'author'
 });
 
+// Article.hasMany(Comment, {
+//   foreignKey: 'user_comments'
+// });
+
 // Comment Relationships
-Comment.belongsTo(Article, {
-  foreignKey: 'article_id'
-});
+Comment.hasOne(Article, {
+  foreignKey: 'user_comments'
+})
 
 Comment.belongsTo(User, {
   foreignKey: 'username'
