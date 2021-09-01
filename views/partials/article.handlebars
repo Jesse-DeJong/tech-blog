@@ -6,14 +6,18 @@
   </h2>
   <div id="collapse{{id}}" class="accordion-collapse collapse" aria-labelledby="heading{{id}}" data-bs-parent="#accordionExample">
     <div class="accordion-body">
-      <h6>Author: {{author}} <p><em>{{date_created}}</em></p></h6>
+      <h5>Author: {{author}} <p><em>{{date_created}}</em></p></h5>
       <p>{{contents}}</p>
+
+      {{#each comments}}
+        {{> comment loggedIn=...loggedIn}}
+      {{/each}}
 
       {{#if loggedIn}}
 
       <div class="mb-3">
         <label for="commentField" class="form-label">Add Comment:</label>
-        <textarea class="form-control" id="commentField{{id}}" rows="3"></textarea>
+        <textarea class="form-control" id="commentField-{{id}}" rows="3"></textarea>
         <button type="submit" class="btn btn-primary mt-3 commentField" id="{{id}}">Submit</button>
       </div>
 

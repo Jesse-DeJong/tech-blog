@@ -1,25 +1,28 @@
 const commentFormHandler = async (event) => {
     event.preventDefault();
-    console.log(event.target);
+
+    // Grab the ID for Article the Comment realates to 
     const articleId = event.target.id;
+
     // DOM targeting 
-    const comment = document.querySelector('#commentField').value;
+    const contents = document.querySelector(`#commentField-${articleId}`).value;
   
     // If user has entered a comment
-    if (comment, articleId) {
+    if (contents, articleId) {
       // Call the comment route with the userdata
-       const loginFetch = await fetch('/api/users/login', {
+       const postCommentFetch = await fetch('/api/comments/addComment', {
         method: 'POST',
-        body: JSON.stringify({ comment, articleId }),
+        body: JSON.stringify({ contents, articleId }),
         headers: { 'Content-Type': 'application/json' },
       });
-      if (loginFetch.status === 200) {
+      if (postCommentFetch.status === 200) {
         window.location.replace('/');
       }
     }
   };
     
-  // DOM targeting and listener for form submission
+  // DOM targeting across DIV to add each listener for form submission
   document
-    .querySelector('.commentField')
-    .addEventListener('click', commentFormHandler);
+    .querySelectorAll('.commentField').forEach(button => {
+        button.addEventListener('click', commentFormHandler)
+    });

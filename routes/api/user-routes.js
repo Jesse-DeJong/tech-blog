@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
     // As an email/password combo has returned successfully flag the user as logged in
     req.session.save(() => {
       req.session.loggedIn = true,
-      console.log('test');
+      req.session.user = userData.username;
       res.json(userData);
     });
     } catch (error) {
